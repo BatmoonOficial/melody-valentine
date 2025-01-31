@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Melody ❤️</title>
+    <title>Para Melody</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
             background-color: #ffe6f0;
             overflow: hidden;
+            position: relative;
         }
         .container {
             margin-top: 100px;
@@ -21,12 +22,8 @@
             animation: heartbeat 1.5s infinite alternate;
         }
         @keyframes heartbeat {
-            from {
-                transform: scale(1);
-            }
-            to {
-                transform: scale(1.1);
-            }
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
         }
         .btn {
             font-size: 20px;
@@ -46,46 +43,58 @@
             color: white;
             position: absolute;
         }
-        .hearts {
+        .card {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-size: 20px;
+            color: #ff0066;
+            transition: transform 0.5s ease-in-out;
         }
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 50% 80%, 20% 100%, 0% 30%);
-            opacity: 0.8;
-            animation: float 4s infinite linear;
-        }
-        @keyframes float {
-            from {
-                transform: translateY(100vh) translateX(0);
-            }
-            to {
-                transform: translateY(-10vh) translateX(20px);
-            }
+        .card.open {
+            transform: translate(-50%, -50%) scale(1);
         }
     </style>
 </head>
 <body>
-    <div class="hearts"></div>
     <div class="container">
-        <h1>Melody, ¿quieres ser mi San Valentín? ❤️</h1>
-        <img src="https://cdn.pixabay.com/photo/2017/01/31/17/13/heart-2024729_960_720.png" alt="Imagen linda" width="300">
+        <h1>Melody, ¿quieres ser mi San Valentín?</h1>
         <br>
-        <button class="btn btn-si" onclick="mostrarMensaje()">Sí precioso</button>
+        <button class="btn btn-si" onclick="abrirCarta()">Sí precioso</button>
         <button class="btn btn-no" id="btnNo">No</button>
     </div>
-    
+    <div class="card" id="carta">
+        <h2>Yupiii</h2>
+        <p>Melody, el 14 apartalo de verdad porque ese será nuestro día.</p>
+        <p>O si no, el sábado 15 para salir los dos sin que nadie nos interrumpa.</p>
+        <p>He aprendido muchas cosas en la vida, pero nunca había sentido tantas ganas de aprender de alguien como las tengo contigo. 
+        Aprender a entenderte, a hacerte feliz, a escucharte incluso cuando no dices nada. 
+        A descubrir lo que te hace brillar y a asegurarme de que nunca dejes de hacerlo.</p>
+        <p>No porque dude de lo fuerte que eres, sé que podrías con todo sola, pero no voy a dejar que caigas. 
+        Así como tú no me has soltado en momentos difíciles, yo tampoco te soltaré. 
+        Porque estar contigo no es una carga, es un regalo. Es una oportunidad que valoro cada día más.</p>
+        <p>Te he dicho muchas veces que no sé por qué, pero hay algo en ti que me hace sentir que eres la persona con la que quiero escribir una historia. 
+        No cualquier historia, sino una de esas que la gente ve y desea tener. No porque sea perfecta, sino porque es nuestra. 
+        Porque tiene risas y retos, tiene momentos mágicos y silencios que dicen más que las palabras.</p>
+        <p>Agradezco a Dios que, de entre 8 mil millones de personas, nos haya dado la oportunidad de coincidir aquí y ahora. 
+        En este tiempo, en este espacio, cuando ambos tenemos la capacidad de valorar lo que estamos construyendo. 
+        No sé qué nos espera más adelante, pero sé que quiero seguir descubriéndolo contigo.</p>
+        <p>Gracias por abrirme tu corazón, por dejarme ver no solo a la mujer increíble que eres, sino también a esa niña que aún vive en ti. 
+        La que se emociona por las cosas pequeñas, la que se ríe sin miedo, la que se deja ser. 
+        Esa dualidad tuya me vuelve loco, me inspira y me hace querer ser mejor cada día.</p>
+        <p>Si algo quiero que sepas es que esto no es solo algo bonito del momento. 
+        Es algo que construyo con intención, con ganas, con toda la certeza de que vale la pena.</p>
+        <p style="font-size: 20px; font-weight: bold; color: #ff0066; margin-top: 20px;">"Für immer ist jetzt."</p>
+    </div>
     <script>
-        function mostrarMensaje() {
-            alert("Yupiiiiiiii! ❤️ Ve pidiendo permiso a tus papás que ese día lo quiero pasar contigo!");
+        function abrirCarta() {
+            document.getElementById("carta").classList.add("open");
         }
         
         document.addEventListener("mousemove", function(event) {
@@ -102,19 +111,6 @@
                 btnNo.style.top = Math.random() * (window.innerHeight - 50) + "px";
             }
         });
-        
-        function createHearts() {
-            const heartsContainer = document.querySelector('.hearts');
-            for (let i = 0; i < 20; i++) {
-                let heart = document.createElement("div");
-                heart.classList.add("heart");
-                heart.style.left = Math.random() * 100 + "vw";
-                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-                heartsContainer.appendChild(heart);
-                setTimeout(() => heart.remove(), 5000);
-            }
-        }
-        setInterval(createHearts, 500);
     </script>
 </body>
 </html>
